@@ -28,11 +28,6 @@
       margin: 0 auto 30px;
       line-height: 1.6;
     }
-    .hearts {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #d63447;
-    }
     .photo-gallery {
       display: flex;
       justify-content: center;
@@ -52,8 +47,10 @@
     .photo-gallery img:hover {
       transform: scale(1.1);
     }
+
+    /* 🔇 הסתרת נגן המוזיקה */
     audio {
-      display: none; /* הסתרת הנגן */
+      display: none;
     }
   </style>
 </head>
@@ -77,10 +74,9 @@
     <img src="pic3.jpeg" alt="תמונה 3" />
   </div>
 
-  <!-- מוזיקה ברקע אוטומטית וללא נגן -->
+  <!-- מוזיקה מתנגנת אוטומטית וללא כפתור -->
   <audio autoplay loop>
     <source src="music.mp3" type="audio/mpeg" />
-    הדפדפן שלך לא תומך בניגון מוזיקה.
   </audio>
 </body>
 </html>
