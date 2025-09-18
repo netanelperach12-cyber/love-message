@@ -53,9 +53,7 @@
       transform: scale(1.1);
     }
     audio {
-      margin-top: 30px;
-      width: 300px;
-      outline: none;
+      display: none; /* הסתרת הנגן */
     }
   </style>
 </head>
@@ -79,7 +77,8 @@
     <img src="pic3.jpeg" alt="תמונה 3" />
   </div>
 
-  <audio controls autoplay loop>
+  <!-- מוזיקה ברקע אוטומטית וללא נגן -->
+  <audio autoplay loop>
     <source src="music.mp3" type="audio/mpeg" />
     הדפדפן שלך לא תומך בניגון מוזיקה.
   </audio>
