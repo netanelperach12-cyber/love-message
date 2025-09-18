@@ -12,22 +12,24 @@
       direction: rtl;
       text-align: center;
       padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      overflow-x: hidden;
     }
+
     h1 {
       font-size: 3rem;
       color: #d63447;
       margin-bottom: 10px;
+      animation: fadeIn 2s ease-out forwards;
     }
+
     p {
       font-size: 1.2rem;
       max-width: 600px;
       margin: 0 auto 30px;
       line-height: 1.6;
+      animation: fadeIn 3s ease-out forwards;
     }
+
     .photo-gallery {
       display: flex;
       justify-content: center;
@@ -35,26 +37,102 @@
       margin-top: 30px;
       flex-wrap: wrap;
     }
+
     .photo-gallery img {
       width: 150px;
       height: 150px;
       object-fit: cover;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-    }
-    .photo-gallery img:hover {
-      transform: scale(1.1);
+      animation: floatIn 1s ease-out forwards;
     }
 
-    /* 🔇 הסתרת נגן המוזיקה */
+    .photo-gallery img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
     audio {
       display: none;
+    }
+
+    /* ❤️ לבבות צפים */
+    .hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- ❤️ לבבות -->
+  <div class="hearts-container">
+    <!-- נייצר כמה לבבות -->
+    <script>
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+        heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+        heart.innerText = '❤️';
+        document.querySelector('.hearts-container').appendChild(heart);
+      }
+    </script>
+  </div>
+
   <h1>מאמי שלי ❤️❤️❤️</h1>
   <p>
     אני יודע ששכחתי ואני מצטער, מגיע לך הרבה יותר מזה.<br />
@@ -74,9 +152,9 @@
     <img src="pic3.jpeg" alt="תמונה 3" />
   </div>
 
-  <!-- מוזיקה מתנגנת אוטומטית וללא כפתור -->
   <audio autoplay loop>
     <source src="music.mp3" type="audio/mpeg" />
   </audio>
+
 </body>
 </html>
